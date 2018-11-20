@@ -39,8 +39,8 @@ def bump_version():
         end
 
 def tag_new_version(new_version):
-    subprocess.call(["git", "tag", "v"+str(new_version)])
     subprocess.call(["git", "add", "."])
     subprocess.call(["git", "commit", "-m", "#bump version"])
+    subprocess.call(["git", "tag", "v"+str(new_version)])
 
 bump_version()
