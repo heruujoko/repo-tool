@@ -18,7 +18,6 @@ def bump_version():
     version = data['version']
     version_arr = version.split('.')
     new_version = version_arr[0] +"."+ str(int(version_arr[1]) +1) +"."+ version_arr[2]
-    print(new_version)
 
     # Safely read the input filename using 'with'
     filename = 'package.json'
@@ -31,10 +30,17 @@ def bump_version():
             print '"{version}" found in {filename}.'.format(**locals())
             # Safely write the changed content, if found in the file
             with open(filename, 'w') as f:
-                print 'Changing "{version}" to "{new_version}" in {filename}'.format(**locals())
+                print 'Bumping version "{version}" to "{new_version}" in {filename}'.format(**locals())
                 s = s.replace(version, new_version)
                 f.write(s)
+
+                tag_new_version(new_version)
             return
         end
+
+def tag_new_version(new_version):
+    subprocess.call(["git", "tag", "v"+str(new_version)])
+    subprocess.call(["git", "add", "."])
+    subprocess.call(["git", "commit", "-m", "#bump version"])
 
 bump_version()
