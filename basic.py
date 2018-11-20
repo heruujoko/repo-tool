@@ -1,5 +1,6 @@
 import urllib, json
 import subprocess
+import time
 from pprint import pprint
 
 #commit
@@ -34,6 +35,7 @@ def bump_version():
                 s = s.replace(version, new_version)
                 f.write(s)
 
+                time.sleep(2)
                 tag_new_version(new_version)
             return
         end
