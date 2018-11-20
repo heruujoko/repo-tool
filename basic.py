@@ -35,7 +35,7 @@ def bump_version():
                 s = s.replace(version, new_version)
                 f.write(s)
         
-        time.sleep(5)
+        time.sleep(1)
         tag_new_version(new_version)    
 
 
