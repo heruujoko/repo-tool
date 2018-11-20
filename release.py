@@ -22,7 +22,7 @@ def bump_version(type):
     if type == 'minor':
         new_version = version_arr[0] +"."+ str(int(version_arr[1]) +1) +"."+ version_arr[2]
     else:
-        new_version = str(int(version_arr[0])+1) + "." + version_arr[1] + "." + version_arr[2]
+        new_version = str(int(version_arr[0])+1) + ".0.0"
 
     # Safely read the input filename using 'with'
     filename = 'package.json'
