@@ -34,11 +34,10 @@ def bump_version():
                 print 'Bumping version "{version}" to "{new_version}" in {filename}'.format(**locals())
                 s = s.replace(version, new_version)
                 f.write(s)
+        
+        time.sleep(5)
+        tag_new_version(new_version)    
 
-                time.sleep(5)
-                tag_new_version(new_version)
-            return
-        end
 
 def tag_new_version(new_version):
     subprocess.call(["git", "add", "."])
